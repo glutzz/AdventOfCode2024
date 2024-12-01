@@ -4,16 +4,7 @@ import java.util.*;
 import java.io.*;
 
 class Day1 {
-    // Create a method which takes in two arrays
-    // Sort the array from smallest to largest
-    // Compare the difference between each one
-
-    // Also need to read in a text file for puzzle input
-    // White space == 3; split list left & right to populate
-    // Call this in main method
-
-
-    // Part One
+    // part one
     public static int calculateDistance(int[] leftList, int[] rightList) {
         Arrays.sort(leftList);
         Arrays.sort(rightList);
@@ -23,15 +14,12 @@ class Day1 {
         for (int i = 0; i < leftList.length; i++) {
             totalDistance += Math.abs((leftList[i] - rightList[i]));
         }
-
         return totalDistance;
     }
-
-    // Part Two
+    // part two
     public static int calculateSame(int[] leftList, int[] rightList) {
         int simScore = 0;
         HashMap<Integer, Integer> hm = new HashMap<>();
-        // Counting the frequency of each number in the list
         for (int num : rightList) {
             hm.put(num, hm.getOrDefault(num, 0) + 1);
         }
@@ -42,17 +30,14 @@ class Day1 {
             }
         }
         return simScore;
-
-        }
-
+     }
     public static void main(String[] args) {
-        // int[] left = {1,2,3,3,3,4};
-        // int[] right = {3,3,3,4,5,9};
 
         try {
-            // TEST CASES
+            // given test cases!! :)
             // int[] left = {1,2,3,3,3,4};
             // int[] right = {3,3,3,4,5,9};
+
             File file = new File("puzzleinput.txt");
             BufferedReader br = new BufferedReader(new FileReader(file));
 
@@ -70,13 +55,13 @@ class Day1 {
             int[] left = leftInput.stream().mapToInt(i -> i).toArray();
             int[] right = rightInput.stream().mapToInt(i -> i).toArray();
 
-
-            // Part One Answer
-           // int total = calculateDistance(left, right);
+            // part one answer
+            int total = calculateDistance(left, right);
            
-            // Part Two Answer
+            // part two answer
             int sameScore = calculateSame(left, right);
 
+            System.out.println(total);
             System.out.println(sameScore);
         }
         catch(Exception e) {
